@@ -5,7 +5,7 @@
 #include "base_container.h"
 
 #define LIST_DEFAULT_ALLOCATED_SPACE ((size_t) 20)
-#define LIST_GROWTH_FACTOR ((size_t) 10)
+#define LIST_GROWTH_FACTOR ((size_t) 10) // When reallocating to add more space for the array we add space for LIST_GROWTH_FACTOR elements
 
 struct __list {
     size_t memory_size;
