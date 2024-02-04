@@ -1,0 +1,3 @@
+In create list : initialize the array
+In append list : see if I want to replace realloc by reallocarray
+Globally : add support for pointer storage
