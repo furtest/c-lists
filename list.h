@@ -13,6 +13,7 @@ struct __list {
     base_container* array;
 };
 
+// Using a double pointer if for any reason I need to move the struct __list in the futur
 typedef struct __list** list;
 
 list create_list(void);
