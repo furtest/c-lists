@@ -1,3 +1,4 @@
 In create list : initialize the array
 In append list : see if I want to replace realloc by reallocarray
 Globally : add support for pointer storage
+In test : check that all values are properly stored

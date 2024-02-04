@@ -95,3 +95,11 @@ int append_list(list _list, int type, int count, ...){
 
     return 0;
 }
+
+/// @brief Properly free the list, this function MUST be called when a list will no longer be used
+/// @param _list the list to free
+void free_list(list _list){
+    free((*_list)->array);
+    free((*_list));
+    free(_list);
+}

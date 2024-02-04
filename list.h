@@ -18,5 +18,6 @@ typedef struct __list** list;
 
 list create_list(void);
 int append_list(list _list, int type, int count, ...);
+void free_list(list _list);
 
 #endif
