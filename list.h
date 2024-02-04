@@ -13,9 +13,9 @@ struct __list {
     base_container* array;
 };
 
-typedef struct __list* list;
+typedef struct __list** list;
 
 list create_list(void);
-int append_list(list* _list, int type, int count, ...);
+int append_list(list _list, int type, int count, ...);
 
 #endif

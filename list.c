@@ -6,11 +6,12 @@
 /// @brief Create a new list
 /// @details The function first creates a struct __list and then a list with a pointer to this struct.
 /// @details We then initialize the size to 0 and allocate memory to the array
-/// @return The list (pointer to a struct __list)
+/// @return The list (pointer to a pointer to a struct __list)
 list create_list(void){
     // Creation of the list
     struct __list rNewList= {0};
-    list newList = &rNewList;
+    // We work with a single pointer
+    struct __list* newList = &rNewList;
     newList->size = 0;
     newList->array = calloc(LIST_DEFAULT_ALLOCATED_SPACE, sizeof(struct __base_container));
     if(newList->array == NULL){
@@ -18,7 +19,9 @@ list create_list(void){
         return NULL;
     }
     newList->memory_size = LIST_DEFAULT_ALLOCATED_SPACE;
-    return newList;
+    list newListAddr = &newList;
+    // Return the address of the pointer
+    return newListAddr;
 }
 
 /// @brief Append one or multiple elements to the list
@@ -27,11 +30,11 @@ list create_list(void){
 /// @param count the number of elements to add
 /// @param 
 /// @return 
-int append_list(list* _list, int type, int count, ...){
+int append_list(list _list, int type, int count, ...){
     // Check if the list's array is full
     if((*_list)->size == (*_list)->memory_size){
         // Reallocate memory (previous size + LIST_GROWTH_FACTOR + the number of elements to add) * the size of the container (element of the array) 
-        list nList = realloc((*_list), ((*_list)->memory_size + LIST_GROWTH_FACTOR + count) * sizeof(struct __base_container));
+        struct __list* nList = realloc((*_list), ((*_list)->memory_size + LIST_GROWTH_FACTOR + count) * sizeof(struct __base_container));
         if(nList == NULL){
             return 1;
         }
@@ -77,5 +80,8 @@ int append_list(list* _list, int type, int count, ...){
         // Add the base container to the list and increase the size
         (*_list)->array[(*_list)->size] = var;
         (*_list)->size++;
+        
     }
+
+    return 0;
 }
