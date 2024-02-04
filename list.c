@@ -43,6 +43,7 @@ int append_list(list _list, int type, int count, ...){
     // Check if the list's array is full
     if(((*_list)->size + count) > (*_list)->memory_size){
         // Reallocate memory (previous size + LIST_GROWTH_FACTOR + the number of elements to add) * the size of the container (element of the array) 
+        // TODO maybe use reallocarray
         struct __base_container* nArray = realloc((*_list)->array, ((*_list)->memory_size + LIST_GROWTH_FACTOR + count) * sizeof(struct __base_container));
         if(nArray == NULL){
             return 1;
@@ -93,4 +94,12 @@ int append_list(list _list, int type, int count, ...){
     }
 
     return 0;
+}
+
+/// @brief Properly free the list, this function MUST be called when a list will no longer be used
+/// @param _list the list to free
+void free_list(list _list){
+    free((*_list)->array);
+    free((*_list));
+    free(_list);
 }
